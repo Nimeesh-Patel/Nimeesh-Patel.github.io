@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nimeesh Patel</title>
-<meta name="description" content="Nimeesh Patel: what interests me, the problems I'm working on, my conjectures, my work, and a pseudo-résumé.">
+<meta name="description" content="Nimeesh Patel: what interests me, the problems I'm working on and my conjectures about them, my work, and a pseudo-résumé.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
@@ -77,7 +77,7 @@
   h2 .n { color: var(--accent); margin-right: 0.75em; }
 
   /* things to scan */
-  .links, .toc, .meta, .go, .back, .covers .t, .covers .a, footer {
+  .links, .toc, .meta, .related, .covers .t, .covers .a, footer {
     font-size: var(--small); line-height: 1.5;
   }
   .links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin: 0 0 1rem; }
@@ -94,32 +94,27 @@
   /* numbers that pair problems with conjectures */
   .num { display: inline-block; width: 2.25rem; flex: none; color: var(--accent); font-weight: 500; font-variant-numeric: lining-nums tabular-nums; }
 
-  /* 2 · problems */
-  .problem { border-left: 2px solid var(--rule); padding-left: 1rem; margin: 0 0 1.75rem; }
-  .problem h3 { margin-bottom: 0.25rem; padding-left: 2.25rem; text-indent: -2.25rem; }
-  .problem h3 .num { text-indent: 0; }
-  .problem p, .problem .go { margin-left: 2.25rem; }
-  .problem .go { display: inline-block; }
-  .problem p { margin-bottom: 0.25rem; }
-
-  /* 3 · conjectures: flashcards, question in front, conjecture behind the *** as in my notes */
+  /* 2 · flashcards: the problem in front, the conjecture behind the *** as in my notes */
   .card { background: var(--card); border-radius: 6px; margin: 0 0 0.75rem; }
   .card summary { cursor: pointer; list-style: none; padding: 0.9rem 1.25rem; display: flex; align-items: baseline; }
-  .card summary .q { flex: 1; margin-right: 1rem; }
+  .card summary .front { flex: 1; margin-right: 1rem; }
+  .card summary .q { display: block; }
+  .card summary .why { display: block; font-weight: 400; margin-top: 0.25rem; }
   .card summary::-webkit-details-marker { display: none; }
   .card summary::after { content: "+"; color: var(--muted); font-weight: 400; }
   .card[open] summary::after { content: "\2212"; }
-  .card .body { padding: 0 1.25rem 1rem; }
+  .card .body { padding: 0 1.25rem 1rem 3.5rem; }
   .card .body::before { content: "* * *"; display: block; text-align: center; color: var(--muted); letter-spacing: 0.3em; margin: -0.25rem 0 0.75rem; }
   .card .open-edge { border-top: 1px dashed var(--rule); padding-top: 0.75rem; color: var(--muted); font-style: italic; }
+  .card .related { margin: 0.75rem 0 0; color: var(--muted); }
 
-  /* 4, 5 · entries */
+  /* 3, 4 · entries */
   .entry { margin: 0 0 1.75rem; }
   .entry .meta { margin: 0.1rem 0 0.4rem; }
   .entry p { margin-bottom: 0.5rem; }
   .work { border-left: 2px solid var(--rule); padding-left: 1rem; }
 
-  /* 6 · albums */
+  /* 5 · albums */
   .covers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem 1rem; margin: 0 0 1.5rem; padding: 0; list-style: none; }
   .covers img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 3px; background: var(--card); margin-bottom: 0.4rem; }
   .covers .t, .covers .a { display: block; }
@@ -148,10 +143,9 @@
   <ol class="toc">
     <li><a href="#interests"><span class="n">1</span>Interests</a></li>
     <li><a href="#problems"><span class="n">2</span>Problems</a></li>
-    <li><a href="#conjectures"><span class="n">3</span>Conjectures</a></li>
-    <li><a href="#work"><span class="n">4</span>Work</a></li>
-    <li><a href="#resume"><span class="n">5</span>Pseudo-résumé</a></li>
-    <li><a href="#misc"><span class="n">6</span>Miscellany</a></li>
+        <li><a href="#work"><span class="n">3</span>Work</a></li>
+    <li><a href="#resume"><span class="n">4</span>Pseudo-résumé</a></li>
+    <li><a href="#misc"><span class="n">5</span>Miscellany</a></li>
   </ol>
 </header>
 
@@ -168,141 +162,92 @@
 </ul>
 
 <h2 id="problems"><span class="n">2</span>Problems I'm working on</h2>
-<p class="hint">I keep my notes the way Popper says knowledge starts: problem first. These are some of them. Each has a matching flashcard in the next section, with my current conjecture on the back.</p>
+<p class="hint">I keep my notes as flashcards: the problem on the front, my current conjecture on the back. Tap a card to turn it over. The conjectures are tentative, and some have open edges I haven't solved.</p>
 
-<div class="problem" id="p1">
-  <h3><span class="num">2.1</span>What is the difference between a normal program and a general intelligence?</h3>
-  <p>Programs keep getting better at things that look like thinking. If general intelligence is different in kind, what exactly is the difference?</p>
-  <a class="go" href="#c1">Conjecture 3.1 ↓</a>
-</div>
-
-<div class="problem" id="p2">
-  <h3><span class="num">2.2</span>How are morality, disobedience and creativity related?</h3>
-  <p>Creativity seems to need a mind that disobeys its existing ideas. But choosing what to disobey is a moral choice, which itself needs knowledge.</p>
-  <a class="go" href="#c2">Conjecture 3.2 ↓</a>
-</div>
-
-<div class="problem" id="p3">
-  <h3><span class="num">2.3</span>Why do observations require disobedience?</h3>
-  <p>An observation can correct what we know only by clashing with a theory we hold. What does it take for a mind to let that clash happen?</p>
-  <a class="go" href="#c3">Conjecture 3.3 ↓</a>
-</div>
-
-<div class="problem" id="p4">
-  <h3><span class="num">2.4</span>How is beauty related to knowledge?</h3>
-  <p>Beauty attracts even things that can't explain anything, like bees to flowers. Why, and what does that have to do with understanding?</p>
-  <a class="go" href="#c4">Conjecture 3.4 ↓</a>
-</div>
-
-<div class="problem" id="p5">
-  <h3><span class="num">2.5</span>How can the Enlightenment be progressed?</h3>
-  <p>Its way of life — pursuing knowledge through criticism and good explanations rather than authority — is rare, and has enemies. How does it spread and survive?</p>
-  <a class="go" href="#c5">Conjecture 3.5 ↓</a>
-</div>
-
-<div class="problem" id="p6">
-  <h3><span class="num">2.6</span>How can I keep what I think so I can come back and build on it?</h3>
-  <p>I write far more than I can remember, and a thought I can't find again when it becomes relevant is as good as lost.</p>
-  <a class="go" href="#c6">Conjecture 3.6 ↓</a>
-</div>
-
-<div class="problem" id="p7">
-  <h3><span class="num">2.7</span>How can people discuss research critically online?</h3>
-  <p>Research is discussed online all the time, but rarely in a way that finds its errors and improves it.</p>
-  <a class="go" href="#c7">Conjecture 3.7 ↓</a>
-</div>
-
-<h2 id="conjectures"><span class="n">3</span>Conjectures</h2>
-<p class="hint">Tap a card to turn it over. These are tentative, and some have open edges I haven't solved.</p>
-
-<details class="card" id="c1">
-  <summary><span class="num">3.1</span><span class="q">What is the difference between a normal program and a general intelligence?</span></summary>
+<details class="card" id="p1">
+  <summary><span class="num">2.1</span><span class="front"><span class="q">What is the difference between a normal program and a general intelligence?</span><span class="why">Programs keep getting better at things that look like thinking. If general intelligence is different in kind, what exactly is the difference?</span></span></summary>
   <div class="body">
     <p>A normal program can be defined by its specification: its outputs for given inputs. A general intelligence can't, because its morality isn't fixed. It can change the criteria by which it judges ideas, and changing one's morality is what disobedience means. A GI doesn't even need input; it can just think.</p>
     <p>GIs are better than any other program at guessing and criticising because they understand the problem: they disobey the current solutions, guess new ones meaning to solve it, and criticise the guesses against it. Since there's no fixed mapping from inputs to outputs, no benchmark can test for general intelligence.</p>
     <p>LLMs don't have problems of their own. What they do is perspiration: drawing out the implications of knowledge that already exists. That makes them very good at connecting known dots and unable to create new ones — a difference in kind, not degree.</p>
-    <a class="back" href="#p1">↑ 2.1</a>
+    <p class="related">Related work: <a href="#w1">My research system</a>, which is built on this theory ↓</p>
   </div>
 </details>
 
-<details class="card" id="c2">
-  <summary><span class="num">3.2</span><span class="q">How are morality, disobedience and creativity related?</span></summary>
+<details class="card" id="p2">
+  <summary><span class="num">2.2</span><span class="front"><span class="q">How are morality, disobedience and creativity related?</span><span class="why">Creativity seems to need a mind that disobeys its existing ideas. But choosing what to disobey is a moral choice, which itself needs knowledge.</span></span></summary>
   <div class="body">
     <p>Morality is the problem of what to do next: of where to direct creativity. Knowledge comes via creativity, and creativity via disobedience — not following the existing ideas or criteria about a problem you find interesting. Disobedience has to be about a problem; without one it's just randomness.</p>
     <p>Interest is how problems get selected, so it's partly moral. Fun is when no idea in the mind is taking authority over another, which makes it a form of disobedience — and why "boring now, rewarding later" patience is really obedience.</p>
     <p class="open-edge">Open edge: creativity needs disobedience, disobedience is a moral choice that needs moral knowledge, and knowledge needs creativity. This looks circular, and I haven't resolved it.</p>
-    <a class="back" href="#p2">↑ 2.2</a>
   </div>
 </details>
 
-<details class="card" id="c3">
-  <summary><span class="num">3.3</span><span class="q">Why do observations require disobedience?</span></summary>
+<details class="card" id="p3">
+  <summary><span class="num">2.3</span><span class="front"><span class="q">Why do observations require disobedience?</span><span class="why">An observation can correct what we know only by clashing with a theory we hold. What does it take for a mind to let that clash happen?</span></span></summary>
   <div class="body">
     <p>Observations aren't possible without disobedience. An observation corrects knowledge only by clashing with a theory, and admitting the clash means disobeying the theory.</p>
     <p>Corollary: animals, and any program other than a general intelligence, can't have observations.</p>
     <p class="open-edge">I'd thought about this problem for a long time, and this idea surprised me. It could be completely wrong, but it seems to solve the problem and fits the rest of my theory of morality.</p>
-    <a class="back" href="#p3">↑ 2.3</a>
   </div>
 </details>
 
-<details class="card" id="c4">
-  <summary><span class="num">3.4</span><span class="q">How is beauty related to knowledge?</span></summary>
+<details class="card" id="p4">
+  <summary><span class="num">2.4</span><span class="front"><span class="q">How is beauty related to knowledge?</span><span class="why">Beauty attracts even things that can't explain anything, like bees to flowers. Why, and what does that have to do with understanding?</span></span></summary>
   <div class="body">
     <p>Beauty draws interest. It makes you dwell on something and ask "how is this possible?" — perhaps it's what an inconsistency between theories feels like when it pulls you towards a problem. Clarity is beautiful because it carries a good explanation.</p>
     <p>Bees aren't universal explainers, yet they are drawn to objective beauty they weren't specifically programmed to recognise. If beauty works like that on people too, it can draw someone towards epistemology even before they have the problems that would lead them there.</p>
-    <a class="back" href="#p4">↑ 2.4</a>
   </div>
 </details>
 
-<details class="card" id="c5">
-  <summary><span class="num">3.5</span><span class="q">How can the Enlightenment be progressed?</span></summary>
+<details class="card" id="p5">
+  <summary><span class="num">2.5</span><span class="front"><span class="q">How can the Enlightenment be progressed?</span><span class="why">Its way of life — pursuing knowledge through criticism and good explanations rather than authority — is rare, and has enemies. How does it spread and survive?</span></span></summary>
   <div class="body">
     <p>A dynamic society is one where rational memes have the advantage over anti-rational ones, because of its tradition of criticism, its optimism and its embrace of creativity. Anti-rational memes survive by disabling the critical faculties of the people who hold them; the problem isn't people but the ideas in their minds.</p>
     <p>All evils are caused by insufficient knowledge, so the speed of progress may be the only real defence. My conjecture for speeding it up is a research institution on a capitalist model: people and companies support it for the knowledge it creates and can withdraw whenever they like, which keeps it exposed to criticism. It has to be free; only free people create a lot of knowledge.</p>
-    <a class="back" href="#p5">↑ 2.5</a>
   </div>
 </details>
 
-<details class="card" id="c6">
-  <summary><span class="num">3.6</span><span class="q">How can I keep what I think so I can come back and build on it?</span></summary>
+<details class="card" id="p6">
+  <summary><span class="num">2.6</span><span class="front"><span class="q">How can I keep what I think so I can come back and build on it?</span><span class="why">I write far more than I can remember, and a thought I can't find again when it becomes relevant is as good as lost.</span></span></summary>
   <div class="body">
     <p>Store it problem-first: one problem per note, question above the line and conjecture below, like this page. Attention follows problems, so a note stays findable only if a live problem points to it. Resurface old problems with spaced repetition so they meet new ideas.</p>
-    <p>Edison said research is one per cent inspiration and ninety-nine per cent perspiration. Tools, LLM agents included, can do the perspiration — searching, drawing out implications, exposing conflicts — while the inspiration stays with me. <a href="#w1">What I've built for this ↓</a></p>
-    <a class="back" href="#p6">↑ 2.6</a>
+    <p>Edison said research is one per cent inspiration and ninety-nine per cent perspiration. Tools, LLM agents included, can do the perspiration — searching, drawing out implications, exposing conflicts — while the inspiration stays with me.</p>
+    <p class="related">Related work: <a href="#w1">My research system</a> ↓</p>
   </div>
 </details>
 
-<details class="card" id="c7">
-  <summary><span class="num">3.7</span><span class="q">How can people discuss research critically online?</span></summary>
+<details class="card" id="p7">
+  <summary><span class="num">2.7</span><span class="front"><span class="q">How can people discuss research critically online?</span><span class="why">Research is discussed online all the time, but rarely in a way that finds its errors and improves it.</span></span></summary>
   <div class="body">
-    <p>I don't have one. I've tried twice, and both times built something that didn't solve the original problem; I came to think discovering research and discussing it are different problems. That's partly what turned me towards tools for my own inquiry (3.6). <a href="#w2">The attempts ↓</a></p>
-    <a class="back" href="#p7">↑ 2.7</a>
+    <p>I don't have one. I've tried twice, and both times built something that didn't solve the original problem; I came to think discovering research and discussing it are different problems. That's partly what turned me towards tools for my own inquiry .</p>
+    <p class="related">Related work: <a href="#w2">Anaxi</a> and <a href="#w3">Kritique</a> ↓</p>
   </div>
 </details>
 
-<h2 id="work"><span class="n">4</span>My work</h2>
-<p class="hint">Attempts at the problems above. Each is listed under the problem it was trying to solve.</p>
+<h2 id="work"><span class="n">3</span>My work</h2>
+<p class="hint">Attempts at the problems above. Each names the problem it was trying to solve.</p>
 
 <div class="entry" id="w1">
   <h3>My research system</h3>
-  <div class="meta">For problem 2.6 · in daily use</div>
+  <div class="meta">Problem <a href="#p6">2.6</a> · in daily use</div>
   <p>My notes live as Markdown in Obsidian, one problem per note, question above *** and conjecture below. Around them:</p>
   <ul class="plain">
     <li><a href="https://github.com/Nimeesh-Patel/Problem-Notes">Problem Notes</a>, an Obsidian plugin for writing and reading notes problem-first.</li>
     <li><a href="https://github.com/Nimeesh-Patel/interest">Interest</a>, a Flutter app that turns notes into Anki flashcards, so old problems resurface.</li>
-    <li><a href="https://github.com/Nimeesh-Patel/Perspirator-9000">Perspirator</a>, a set of agent tools that do the perspiration on my notes: finding related ones, drawing out implications and stating conflicts as questions. It's built on the theory in 3.1.</li>
+    <li><a href="https://github.com/Nimeesh-Patel/Perspirator-9000">Perspirator</a>, a set of agent tools that do the perspiration on my notes: finding related ones, drawing out implications and stating conflicts as questions. It's built on the theory in <a href="#p1">2.1</a>.</li>
   </ul>
 </div>
 
 <div class="entry" id="w2">
   <h3>Anaxi</h3>
-  <div class="meta">For problem 2.7 · <a href="https://github.com/Nimeesh-Patel/anaxi">source</a></div>
+  <div class="meta">Problem <a href="#p7">2.7</a> · <a href="https://github.com/Nimeesh-Patel/anaxi">source</a></div>
   <p>A research-paper platform meant to let people search, discuss and annotate papers. What got built is an MCP server that lets AI assistants search for and retrieve arXiv papers. The discussion part stayed unsolved.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="w3">
   <h3>Kritique</h3>
-  <div class="meta">For problem 2.7 · undergraduate team project · <a href="https://github.com/Nimeesh-Patel/MP/tree/new-ui">source</a></div>
+  <div class="meta">Problem <a href="#p7">2.7</a> · undergraduate team project · <a href="https://github.com/Nimeesh-Patel/MP/tree/new-ui">source</a></div>
   <p>A social platform for critical discussion of research. The idea changed a lot as we built it, and we ended with a working prototype that we'd come to doubt could solve the problem we started with.</p>
 </div>
 
@@ -314,7 +259,7 @@
   </ul>
 </div>
 
-<h2 id="resume"><span class="n">5</span>Pseudo-résumé</h2>
+<h2 id="resume"><span class="n">4</span>Pseudo-résumé</h2>
 
 <div class="entry">
   <h3>Grexa.ai</h3>
@@ -342,7 +287,7 @@
 
 <p class="muted">Mostly Python, TypeScript and Dart; Flutter, React and Next.js; Supabase and Postgres; LLM APIs and MCP.</p>
 
-<h2 id="misc"><span class="n">6</span>Miscellany</h2>
+<h2 id="misc"><span class="n">5</span>Miscellany</h2>
 
 <h4>Albums I love</h4>
 <ul class="covers main">
