@@ -94,18 +94,19 @@
   /* numbers that pair problems with conjectures */
   .num { display: inline-block; width: 2.25rem; flex: none; color: var(--accent); font-weight: 500; font-variant-numeric: lining-nums tabular-nums; }
 
-  /* 2 · flashcards: the problem in front, the conjecture behind the *** as in my notes */
+  /* 2 · flashcards: the problem in front; behind the ***, as in my notes, the conjecture and the threads it leaves open */
   .card { background: var(--card); border-radius: 6px; margin: 0 0 0.75rem; }
   .card summary { cursor: pointer; list-style: none; padding: 0.9rem 1.25rem; display: flex; align-items: baseline; }
-  .card summary .front { flex: 1; margin-right: 1rem; }
-  .card summary .q { display: block; }
-  .card summary .why { display: block; font-weight: 400; margin-top: 0.25rem; }
+  .card summary .q { flex: 1; margin-right: 1rem; }
   .card summary::-webkit-details-marker { display: none; }
   .card summary::after { content: "+"; color: var(--muted); font-weight: 400; }
   .card[open] summary::after { content: "\2212"; }
   .card .body { padding: 0 1.25rem 1rem 3.5rem; }
   .card .body::before { content: "* * *"; display: block; text-align: center; color: var(--muted); letter-spacing: 0.3em; margin: -0.25rem 0 0.75rem; }
-  .card .open-edge { border-top: 1px dashed var(--rule); padding-top: 0.75rem; color: var(--muted); font-style: italic; }
+  .card .threads { border-top: 1px dashed var(--rule); margin-top: 1rem; padding-top: 0.25rem; }
+  .card .threads h4 { margin: 0.75rem 0 0.5rem; }
+  .card .threads ul { margin: 0; padding-left: 1.1rem; }
+  .card .threads li { margin-bottom: 0.4rem; }
   .card .related { margin: 0.75rem 0 0; color: var(--muted); }
 
   /* 3, 4 · entries */
@@ -162,65 +163,115 @@
 </ul>
 
 <h2 id="problems"><span class="n">2</span>Problems I'm working on</h2>
-<p class="hint">I keep my notes as flashcards: the problem on the front, my current conjecture on the back. Tap a card to turn it over. The conjectures are tentative, and some have open edges I haven't solved.</p>
+<p class="hint">Each card states a problem. Tap it to turn it over: my current conjecture is on the back, with the threads it leaves open.</p>
 
 <details class="card" id="p1">
-  <summary><span class="num">2.1</span><span class="front"><span class="q">What is the difference between a normal program and a general intelligence?</span><span class="why">Programs keep getting better at things that look like thinking. If general intelligence is different in kind, what exactly is the difference?</span></span></summary>
+  <summary><span class="num">2.1</span><span class="q">Programs keep getting better at what looks like thinking. What makes a general intelligence different in kind, not just degree?</span></summary>
   <div class="body">
-    <p>A normal program can be defined by its specification: its outputs for given inputs. A general intelligence can't, because its morality isn't fixed. It can change the criteria by which it judges ideas, and changing one's morality is what disobedience means. A GI doesn't even need input; it can just think.</p>
-    <p>GIs are better than any other program at guessing and criticising because they understand the problem: they disobey the current solutions, guess new ones meaning to solve it, and criticise the guesses against it. Since there's no fixed mapping from inputs to outputs, no benchmark can test for general intelligence.</p>
-    <p>LLMs don't have problems of their own. What they do is perspiration: drawing out the implications of knowledge that already exists. That makes them very good at connecting known dots and unable to create new ones — a difference in kind, not degree.</p>
-    <p class="related">Related work: <a href="#w1">My research system</a>, which is built on this theory ↓</p>
+    <p>A normal program can be defined by its specification, its outputs for given inputs, because its morality is fixed. A general intelligence can't: it can change the criteria by which it judges ideas, and changing one's morality is what disobedience means. It understands the problem, disobeys the current solutions, and criticises its guesses against the problem. So there's no input–output mapping to benchmark.</p>
+    <p>Chess engines beat us because the morality of chess is fixed: win. They'd struggle wherever it isn't, like making a beautiful game. LLMs do perspiration, drawing out what existing knowledge implies; they have no problems of their own.</p>
+    <div class="threads">
+      <h4>Open threads</h4>
+      <ul>
+        <li>LLMs can keep memories as text, and a fixed objective might be universal, the way a Turing machine's fixed part is. So what exactly stops them? Saying why is harder than it looks.</li>
+        <li>If general intelligence can't be benchmarked, how would anyone recognise one?</li>
+        <li>Why is it open-ended at all? Probably some feature of the laws of physics, but I haven't explained it.</li>
+      </ul>
+    </div>
+    <p class="related">Related work: <a href="#w1">my research system</a>, which is built on this theory ↓</p>
   </div>
 </details>
 
 <details class="card" id="p2">
-  <summary><span class="num">2.2</span><span class="front"><span class="q">How are morality, disobedience and creativity related?</span><span class="why">Creativity seems to need a mind that disobeys its existing ideas. But choosing what to disobey is a moral choice, which itself needs knowledge.</span></span></summary>
+  <summary><span class="num">2.2</span><span class="q">Creativity needs disobedience, but choosing what to disobey is a moral choice that already needs knowledge. So how does creativity start?</span></summary>
   <div class="body">
-    <p>Morality is the problem of what to do next: of where to direct creativity. Knowledge comes via creativity, and creativity via disobedience — not following the existing ideas or criteria about a problem you find interesting. Disobedience has to be about a problem; without one it's just randomness.</p>
-    <p>Interest is how problems get selected, so it's partly moral. Fun is when no idea in the mind is taking authority over another, which makes it a form of disobedience — and why "boring now, rewarding later" patience is really obedience.</p>
-    <p class="open-edge">Open edge: creativity needs disobedience, disobedience is a moral choice that needs moral knowledge, and knowledge needs creativity. This looks circular, and I haven't resolved it.</p>
+    <p>Morality is the problem of what to do next. It also shapes problems themselves: a problem is a conflict between ideas, and what makes a conflict worth solving is a moral criterion. Disobedience is not following the existing ideas about a problem you find interesting, and disobedience with a critical nature is creativity. Interest is what makes a person disobey.</p>
+    <p>I suspect children create their first moral knowledge through the fun criterion: they don't do what isn't fun. Fun is when no idea in the mind has authority over another.</p>
+    <div class="threads">
+      <h4>Open threads</h4>
+      <ul>
+        <li>Does the fun criterion actually break the circle, or only move it?</li>
+        <li>How is disobedience different from creativity?</li>
+        <li>There's an aesthetic beauty in a conflict of ideas. What role does beauty play here?</li>
+      </ul>
+    </div>
   </div>
 </details>
 
 <details class="card" id="p3">
-  <summary><span class="num">2.3</span><span class="front"><span class="q">Why do observations require disobedience?</span><span class="why">An observation can correct what we know only by clashing with a theory we hold. What does it take for a mind to let that clash happen?</span></span></summary>
+  <summary><span class="num">2.3</span><span class="q">All observation is theory-laden, so how can an observation ever correct the theory it's seen through?</span></summary>
   <div class="body">
-    <p>Observations aren't possible without disobedience. An observation corrects knowledge only by clashing with a theory, and admitting the clash means disobeying the theory.</p>
-    <p>Corollary: animals, and any program other than a general intelligence, can't have observations.</p>
-    <p class="open-edge">I'd thought about this problem for a long time, and this idea surprised me. It could be completely wrong, but it seems to solve the problem and fits the rest of my theory of morality.</p>
+    <p>Observations require disobedience. An observation corrects knowledge only by clashing with a theory, and admitting the clash means disobeying that theory. A corollary: animals, and any program other than a general intelligence, can't have observations.</p>
+    <p>I'd thought about this problem for a long time, and the idea surprised me. It could be completely wrong, but it seems to solve the problem, and it fits the rest of my theory of morality.</p>
+    <div class="threads">
+      <h4>Open threads</h4>
+      <ul>
+        <li>I still can't form a good picture of what actually happens in an observation.</li>
+        <li>Conjecture comes before observation; we're born with expectations. What are a general intelligence's first problems?</li>
+      </ul>
+    </div>
   </div>
 </details>
 
 <details class="card" id="p4">
-  <summary><span class="num">2.4</span><span class="front"><span class="q">How is beauty related to knowledge?</span><span class="why">Beauty attracts even things that can't explain anything, like bees to flowers. Why, and what does that have to do with understanding?</span></span></summary>
+  <summary><span class="num">2.4</span><span class="q">Bees can't explain anything, yet beauty attracts them. How is beauty related to knowledge?</span></summary>
   <div class="body">
-    <p>Beauty draws interest. It makes you dwell on something and ask "how is this possible?" — perhaps it's what an inconsistency between theories feels like when it pulls you towards a problem. Clarity is beautiful because it carries a good explanation.</p>
-    <p>Bees aren't universal explainers, yet they are drawn to objective beauty they weren't specifically programmed to recognise. If beauty works like that on people too, it can draw someone towards epistemology even before they have the problems that would lead them there.</p>
+    <p>Beauty draws interest. It makes you dwell on something and ask "how is this possible?" Perhaps it's what a conflict between theories feels like when it pulls you towards a problem. Clarity is beautiful because it carries a good explanation.</p>
+    <p>If beauty attracts even static programs like bees, it can draw a person towards epistemology before they have the problems that would lead them there.</p>
+    <div class="threads">
+      <h4>Open threads</h4>
+      <ul>
+        <li>Beauty seems to grow when there are rival solutions to a problem and one explains better. Is that how artistic progress works, without any mechanical criterion of beauty?</li>
+        <li>What makes one aesthetic explanation better than another?</li>
+      </ul>
+    </div>
   </div>
 </details>
 
 <details class="card" id="p5">
-  <summary><span class="num">2.5</span><span class="front"><span class="q">How can the Enlightenment be progressed?</span><span class="why">Its way of life — pursuing knowledge through criticism and good explanations rather than authority — is rare, and has enemies. How does it spread and survive?</span></span></summary>
+  <summary><span class="num">2.5</span><span class="q">How can the Enlightenment spread, even to people who oppose it, without coercion and as fast as possible?</span></summary>
   <div class="body">
-    <p>A dynamic society is one where rational memes have the advantage over anti-rational ones, because of its tradition of criticism, its optimism and its embrace of creativity. Anti-rational memes survive by disabling the critical faculties of the people who hold them; the problem isn't people but the ideas in their minds.</p>
-    <p>All evils are caused by insufficient knowledge, so the speed of progress may be the only real defence. My conjecture for speeding it up is a research institution on a capitalist model: people and companies support it for the knowledge it creates and can withdraw whenever they like, which keeps it exposed to criticism. It has to be free; only free people create a lot of knowledge.</p>
+    <p>The problem isn't people but the ideas in their minds. Anti-rational memes survive by suppressing criticism; a single one, "this idea cannot be criticised on pain of punishment", can turn a dynamic society static.</p>
+    <p>So introduce people to our best cultures, so they can criticise those memes themselves, and build institutions that give everyone the knowledge of the Enlightenment. Speed of progress may be the only real defence. My conjecture for speeding it up is a research institution on a capitalist model: people support it for the knowledge it creates and can withdraw whenever they like, which keeps it open to criticism. It has to be free.</p>
+    <div class="threads">
+      <h4>Open threads</h4>
+      <ul>
+        <li>Anti-rational memes spread by disabling criticism. How do you make rational memes that spread as fast?</li>
+        <li>I assume such an institution could pay for itself through the knowledge and wealth it creates. That's untested.</li>
+        <li>I don't yet know how to start one.</li>
+      </ul>
+    </div>
   </div>
 </details>
 
 <details class="card" id="p6">
-  <summary><span class="num">2.6</span><span class="front"><span class="q">How can I keep what I think so I can come back and build on it?</span><span class="why">I write far more than I can remember, and a thought I can't find again when it becomes relevant is as good as lost.</span></span></summary>
+  <summary><span class="num">2.6</span><span class="q">I write far more than I can remember. How can I keep my thinking so I can return years later and build on it?</span></summary>
   <div class="body">
-    <p>Store it problem-first: one problem per note, question above the line and conjecture below, like this page. Attention follows problems, so a note stays findable only if a live problem points to it. Resurface old problems with spaced repetition so they meet new ideas.</p>
+    <p>Keep it problem-first: one problem per note, question above the line and conjecture below, like these cards. Attention follows problems, so a note stays findable only if a live problem points to it. Resurface old problems with spaced repetition so they meet new ideas.</p>
     <p>Edison said research is one per cent inspiration and ninety-nine per cent perspiration. Tools, LLM agents included, can do the perspiration — searching, drawing out implications, exposing conflicts — while the inspiration stays with me.</p>
-    <p class="related">Related work: <a href="#w1">My research system</a> ↓</p>
+    <div class="threads">
+      <h4>Open threads</h4>
+      <ul>
+        <li>Could notes, each acting as an agent, interact and generate knowledge, or would they only rearrange it?</li>
+        <li>What must an agent-drafted note preserve for it to count as mine?</li>
+      </ul>
+    </div>
+    <p class="related">Related work: <a href="#w1">my research system</a> ↓</p>
   </div>
 </details>
 
 <details class="card" id="p7">
-  <summary><span class="num">2.7</span><span class="front"><span class="q">How can people discuss research critically online?</span><span class="why">Research is discussed online all the time, but rarely in a way that finds its errors and improves it.</span></span></summary>
+  <summary><span class="num">2.7</span><span class="q">Research seems gatekept by academia. How can anyone who's interested find and join the best tradition of criticism?</span></summary>
   <div class="body">
-    <p>I don't have one. I've tried twice, and both times built something that didn't solve the original problem; I came to think discovering research and discussing it are different problems. That's partly what turned me towards tools for my own inquiry .</p>
+    <p>Digitise it: a public place to discover, understand, debate and criticise research, built on what makes a tradition of criticism work — flat hierarchies, ideas judged by their content and not their source, everyone fallible, and the most trivial-seeming objection possibly the key. The aim of discussion is progress and the fun of exchanging ideas, not victory. Tolerance has to be defended, so ad hominem, coercion and intimidation aren't tolerated.</p>
+    <p>I've built towards this twice without solving it, and came to think that discovering research and discussing it are different problems.</p>
+    <div class="threads">
+      <h4>Open threads</h4>
+      <ul>
+        <li>How do you create a culture of criticism on an app, and make people take part?</li>
+        <li>How could peer review fit in?</li>
+      </ul>
+    </div>
     <p class="related">Related work: <a href="#w2">Anaxi</a> and <a href="#w3">Kritique</a> ↓</p>
   </div>
 </details>
