@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nimeesh Patel</title>
-<meta name="description" content="Nimeesh Patel: the problems I'm working on, what I'm interested in, and what I've done.">
+<meta name="description" content="Nimeesh Patel: what interests me, the problems I'm working on, my conjectured solutions, and what I've done.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
     }
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body {
     margin: 0;
     background: var(--bg);
@@ -42,34 +42,38 @@
   h1 { font-weight: 500; font-size: 2.4rem; letter-spacing: 0.01em; margin: 0 0 0.25rem; }
   h2 {
     font-weight: 500; font-size: 0.85rem; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--muted); margin: 3.5rem 0 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);
+    color: var(--muted); margin: 4rem 0 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);
   }
+  h2 .n { color: var(--accent); margin-right: 0.6em; }
   h3 { font-weight: 600; font-size: 1.15rem; margin: 0; }
+  h4 { font-weight: 500; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 2.25rem 0 0.9rem; }
   p { margin: 0 0 1rem; }
-  .links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin: 0.5rem 0 2rem; font-size: 1.05rem; }
+  .links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin: 0.5rem 0 1.25rem; font-size: 1.05rem; }
+  .toc { display: flex; flex-wrap: wrap; gap: 0.2rem 1.1rem; margin: 0 0 2.5rem; padding: 0; list-style: none; font-size: 0.95rem; }
+  .toc a { color: var(--muted); text-decoration: none; }
+  .toc a:hover { color: var(--accent); }
+  .toc .n { color: var(--accent); margin-right: 0.35em; }
   .lede { font-size: 1.3rem; line-height: 1.5; }
   .muted { color: var(--muted); }
-
-  /* Problems: question visible, conjecture behind the *** — the way my notes are written */
-  .problem { background: var(--card); border-radius: 6px; margin: 0 0 1rem; }
-  .problem summary {
-    cursor: pointer; list-style: none; padding: 1rem 1.25rem; font-size: 1.2rem; font-weight: 500;
-    display: flex; justify-content: space-between; gap: 1rem; align-items: baseline;
-  }
-  .problem summary::-webkit-details-marker { display: none; }
-  .problem summary::after { content: "+"; color: var(--muted); font-weight: 400; }
-  .problem[open] summary::after { content: "\2212"; }
-  .problem .body { padding: 0 1.25rem 1.1rem; }
-  .problem .body::before {
-    content: "* * *"; display: block; text-align: center; color: var(--muted);
-    letter-spacing: 0.3em; margin: -0.25rem 0 0.75rem;
-  }
   .hint { font-size: 0.95rem; color: var(--muted); margin-bottom: 1.25rem; }
 
-  .entry { margin: 0 0 1.75rem; }
+  /* Problems first, conjectures after the *** — the way my notes are written */
+  .problem { background: var(--card); border-radius: 6px; padding: 1rem 1.25rem; margin: 0 0 1rem; }
+  .problem h3 { font-weight: 500; font-size: 1.2rem; line-height: 1.4; margin-bottom: 0.4rem; }
+  .problem p { margin: 0 0 0.4rem; font-size: 1.05rem; }
+  .problem .go { font-size: 0.95rem; }
+  .divider { text-align: center; color: var(--muted); letter-spacing: 0.5em; margin: 3.5rem 0 0; }
+
+  .conj { margin: 0 0 2.5rem; }
+  .conj > h3 { font-size: 1.25rem; font-weight: 500; margin-bottom: 0.6rem; }
+  .conj > h3 a { color: inherit; text-decoration: none; }
+  .conj > h3 a:hover { color: var(--accent); }
+  .work { border-left: 2px solid var(--rule); padding-left: 1rem; margin: 1rem 0 0; }
+  .work .label { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+
+  .entry { margin: 0 0 1.5rem; }
   .entry .meta { color: var(--muted); font-size: 1rem; margin: 0.1rem 0 0.4rem; }
   .entry p { margin-bottom: 0.5rem; }
-  .arrow { color: var(--muted); }
 
   ul.plain { padding-left: 1.1rem; margin: 0 0 1rem; }
   ul.plain li { margin-bottom: 0.35rem; }
@@ -85,12 +89,6 @@
   .covers .a { display: block; font-size: 0.85rem; color: var(--muted); line-height: 1.3; }
   .covers.more .t { font-size: 0.8rem; }
   .covers.more .a { font-size: 0.75rem; }
-  h3.sub { font-size: 1rem; font-weight: 500; color: var(--muted); margin: 0 0 0.75rem; }
-  @media (max-width: 30rem) {
-    .covers.main { gap: 0.6rem; }
-    .covers.more { grid-template-columns: repeat(3, 1fr); }
-    .covers .t { font-size: 0.85rem; }
-  }
 
   blockquote {
     margin: 1.5rem 0; padding: 0 0 0 1.25rem; border-left: 2px solid var(--rule);
@@ -102,6 +100,9 @@
     main { padding-top: 2.5rem; }
     h1 { font-size: 2rem; }
     .lede { font-size: 1.2rem; }
+    .covers.main { gap: 0.6rem; }
+    .covers.more { grid-template-columns: repeat(3, 1fr); }
+    .covers .t { font-size: 0.85rem; }
   }
 </style>
 </head>
@@ -116,49 +117,19 @@
     <a href="https://letterboxd.com/NimeeshPatel/">Letterboxd</a>
     <a href="mailto:nimeeshpatel04@gmail.com">Email</a>
   </nav>
+  <ol class="toc">
+    <li><a href="#interests"><span class="n">1</span>Interests</a></li>
+    <li><a href="#problems"><span class="n">2</span>Problems</a></li>
+    <li><a href="#conjectures"><span class="n">3</span>Conjectures &amp; work</a></li>
+    <li><a href="#resume"><span class="n">4</span>Résumé</a></li>
+    <li><a href="#misc"><span class="n">5</span>Miscellany</a></li>
+  </ol>
 </header>
 
+<h2 id="interests"><span class="n">1</span>Interests</h2>
 <p class="lede">I'm interested in the foundations of computation and its relationship with physics: quantum computation, constructor theory, and what it would take to understand general intelligence. Underneath all of it is epistemology, the question of how knowledge grows.</p>
-<p>I follow Karl Popper and David Deutsch in epistemology and physics. Day to day I work on products and software; right now I'm a Product Management Intern at Grexa.ai. Music, and lately film, take up a lot of the rest; <a href="#music">there's a list below</a>.</p>
-
-<h2>Problems I'm working on</h2>
-<p class="hint">Each is written the way I keep my notes: the problem first, then my current conjecture below the line. The conjectures are tentative and open to criticism.</p>
-
-<details class="problem">
-  <summary>What is general intelligence, and why aren't LLMs it?</summary>
-  <div class="body">
-    <p>A general intelligence can't be defined by its specification, a fixed mapping from inputs to outputs, because what it values isn't fixed. It can have problems of its own and change the criteria by which it judges ideas. That change is a kind of disobedience, and it is what creativity requires. So general intelligence can't be tested with benchmarks.</p>
-    <p>LLMs have no problems of their own. They are very good at drawing out implications of knowledge that already exists, connecting known dots, but they don't create new explanatory knowledge. I think this is a fundamental difference, not an incremental one.</p>
-    <p>The "artificial" in AGI isn't about silicon versus biology. We are natural general intelligences because the knowledge that made us came from blind evolution; an AGI will be artificial because the knowledge to make it will come from <em>understanding</em> what general intelligence is.</p>
-  </div>
-</details>
-
-<details class="problem">
-  <summary>How can tools help a person create knowledge, not just store it?</summary>
-  <div class="body">
-    <p>Store knowledge problem-first: one problem per note, the question before the answer, so you can return to it later with new knowledge and criticise it. Resurface old problems with spaced repetition, so they meet new ideas.</p>
-    <p>Edison said research is one per cent inspiration and ninety-nine per cent perspiration. Software, including LLM agents, can do much of the perspiration: finding related notes, drawing out implications, exposing conflicts. The inspiration stays with the person. This is the idea behind the research system I've built for myself (<a href="#thales">Thales</a>, below).</p>
-  </div>
-</details>
-
-<details class="problem">
-  <summary>What kind of institution sustains the creation of knowledge?</summary>
-  <div class="body">
-    <p>Problems are inevitable, so a civilisation's survival depends on its capacity to solve unforeseen ones, which needs a large, vibrant community interested in explanation and problem-solving, and the wealth to fund it.</p>
-    <p>My conjecture is a research institution on a capitalist model: companies and individuals support it in return for the knowledge and progress it creates, and they can withdraw whenever they like. That exposes the institution to criticism from the market and keeps the means of error-correction alive. It has to be free; only free people create a lot of knowledge.</p>
-  </div>
-</details>
-
-<details class="problem">
-  <summary>How can online discussion be genuinely critical?</summary>
-  <div class="body">
-    <p>Still open. I've tried twice, with <a href="#kritique">Kritique</a> and <a href="#anaxi">Anaxi</a>, and each time built something that turned out not to solve the original problem. What I learned from that is in the next section.</p>
-  </div>
-</details>
-
-<h2>How I choose what to work on</h2>
-<p>I try to follow what interests me. Interest is what lets you create knowledge, and since what's interesting is objective, others may find the knowledge useful too. I'd rather know what I want now and use the long term as a way of criticising it than choose a distant destination, which makes it hard to discover a mistake.</p>
-<p>So these are things I want now, not a plan:</p>
+<p>I follow Karl Popper and David Deutsch in epistemology and physics. Music, and lately film, take up a lot of the rest; <a href="#misc">some favourites are at the end</a>.</p>
+<p>I try to follow what interests me. Interest is what lets you create knowledge, and since what's interesting is objective, others may find the knowledge useful too. I'd rather know what I want now and use the long term as a way of criticising it than choose a distant destination, which makes it hard to discover a mistake. So these are things I want now, not a plan:</p>
 <ul class="plain">
   <li>to study the foundations of computation and its relationship with physics more deeply;</li>
   <li>to understand general intelligence well enough that it could be built;</li>
@@ -166,76 +137,89 @@
   <li>to keep building tools that support research.</li>
 </ul>
 
-<h2 id="music">Albums I love</h2>
-<ul class="covers main">
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/58/4a/10/584a1058-de0a-6a6b-d0bd-da09a028b8bc/00602567705499.rgb.jpg/300x300bb.jpg" alt="Revolver cover" loading="lazy"><span class="t">Revolver</span><span class="a">The Beatles · 1966</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/80/1f/68/801f68cf-3942-880d-18a2-42d08910ddf8/00602527512617.rgb.jpg/300x300bb.jpg" alt="Contact cover" loading="lazy"><span class="t">Contact</span><span class="a">Silver Apples · 1969</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4c/e1/51/4ce15131-7ac5-daf5-bf62-0202f27d691d/887830015998.png/300x300bb.jpg" alt="Loveless cover" loading="lazy"><span class="t">Loveless</span><span class="a">My Bloody Valentine · 1991</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f8/f5/3f/f8f53f85-3698-560b-8742-99af5b994b51/ticket.anhconpg.png/300x300bb.jpg" alt="Camille 2000 cover" loading="lazy"><span class="t">Camille 2000</span><span class="a">Piero Piccioni · 1969</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d1/f9/26/d1f926e7-e996-7166-3744-0710a82177ac/017046664455.jpg/300x300bb.jpg" alt="Moon Safari cover" loading="lazy"><span class="t">Moon Safari</span><span class="a">Air · 1998</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/98/75/2f/98752fcb-0c8f-1e6e-cca3-2553ac9d46ab/0801061009236.png/300x300bb.jpg" alt="Drukqs cover" loading="lazy"><span class="t">Drukqs</span><span class="a">Aphex Twin · 2001</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b7/40/9b/b7409bc6-24fa-b956-5613-4be8dc62be06/12UMGIM64219.rgb.jpg/300x300bb.jpg" alt="Lonerism cover" loading="lazy"><span class="t">Lonerism</span><span class="a">Tame Impala · 2012</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a8/2e/b4/a82eb490-f30a-a321-461a-0383c88fec95/15UMGIM23316.rgb.jpg/300x300bb.jpg" alt="Currents cover" loading="lazy"><span class="t">Currents</span><span class="a">Tame Impala · 2015</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0c/06/05/0c060581-6242-6a2a-a677-20170f2cf8da/886447710180.jpg/300x300bb.jpg" alt="IGOR cover" loading="lazy"><span class="t">IGOR</span><span class="a">Tyler, the Creator · 2019</span></li>
-</ul>
+<h2 id="problems"><span class="n">2</span>Problems I'm working on</h2>
+<p class="hint">This page is laid out the way I keep my notes: the problem first, and my current conjecture after it, in the next section.</p>
 
-<h3 class="sub">And more</h3>
-<ul class="covers more">
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8c/a9/48/8ca94808-6ff9-85e4-48b3-7c76ddfa0fdd/744861037132.png/300x300bb.jpg" alt="And Then Nothing Turned Itself Inside-Out cover" loading="lazy"><span class="t">And Then Nothing Turned Itself Inside-Out</span><span class="a">Yo La Tengo</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ff/ea/28/ffea28a4-988a-f02e-7e1a-8566db3cab02/mzi.uoqucyoy.jpg/300x300bb.jpg" alt="Either/Or cover" loading="lazy"><span class="t">Either/Or</span><span class="a">Elliott Smith</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/43/5f/e8435ffa-b6b9-b171-40ab-4ff3959ab661/886443919266.jpg/300x300bb.jpg" alt="Random Access Memories cover" loading="lazy"><span class="t">Random Access Memories</span><span class="a">Daft Punk</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1a/e8/70/1ae870c3-b402-096b-c4c4-8022af5a2ed9/745099189662.jpg/300x300bb.jpg" alt="The Queen Is Dead cover" loading="lazy"><span class="t">The Queen Is Dead</span><span class="a">The Smiths</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ff/24/6a/ff246ab2-1664-3693-2d65-bacacd833526/cover.jpg/300x300bb.jpg" alt="This Old Dog cover" loading="lazy"><span class="t">This Old Dog</span><span class="a">Mac DeMarco</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c1/71/93/c1719342-df7d-e9c5-c87c-53dae5afb289/00042282855329.rgb.jpg/300x300bb.jpg" alt="Dummy cover" loading="lazy"><span class="t">Dummy</span><span class="a">Portishead</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music5/v4/2f/c7/19/2fc71988-6871-be2c-6731-a3d0f2a6b232/Court_2500px.jpg/300x300bb.jpg" alt="In the Court of the Crimson King cover" loading="lazy"><span class="t">In the Court of the Crimson King</span><span class="a">King Crimson</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/bd/8e/13/bd8e1358-b367-a689-cb84-cebd0b067dc4/634904078263.png/300x300bb.jpg" alt="Kid A cover" loading="lazy"><span class="t">Kid A</span><span class="a">Radiohead</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/af/20/aa/af20aa89-4002-11fb-25d8-ff544af67eb4/00602567725404.rgb.jpg/300x300bb.jpg" alt="Rubber Soul cover" loading="lazy"><span class="t">Rubber Soul</span><span class="a">The Beatles</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/3d/09/0c/3d090c87-f02b-3c3c-cedf-603cc900082f/888174780955_cover.jpg/300x300bb.jpg" alt="French Exit cover" loading="lazy"><span class="t">French Exit</span><span class="a">TV Girl</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/12/e3/5c/12e35c39-de5c-b501-3ef0-00f19fb3d513/56627.jpg/300x300bb.jpg" alt="In the Aeroplane Over the Sea cover" loading="lazy"><span class="t">In the Aeroplane Over the Sea</span><span class="a">Neutral Milk Hotel</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/39/25/2d/39252d65-2d50-b991-0962-f7a98a761271/00602517483507.rgb.jpg/300x300bb.jpg" alt="Graduation cover" loading="lazy"><span class="t">Graduation</span><span class="a">Kanye West</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/79/1d/3c/791d3cfe-d1b0-67a9-acbd-559fd83b3401/075597966961.jpg/300x300bb.jpg" alt="Yankee Hotel Foxtrot cover" loading="lazy"><span class="t">Yankee Hotel Foxtrot</span><span class="a">Wilco</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2d/33/99/2d33992f-4550-269a-bab2-a2558996e5c3/816.jpg/300x300bb.jpg" alt="Madvillainy cover" loading="lazy"><span class="t">Madvillainy</span><span class="a">Madvillain</span></li>
-  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music/bc/20/6b/mzi.nhqretkn.jpg/300x300bb.jpg" alt="Richard D. James Album cover" loading="lazy"><span class="t">Richard D. James Album</span><span class="a">Aphex Twin</span></li>
-</ul>
-
-<h2>Films I've rated highest</h2>
-<ul class="plain">
-  <li><a href="https://letterboxd.com/film/schindlers-list/">Schindler's List</a> <span class="muted">(1993)</span></li>
-  <li><a href="https://letterboxd.com/film/the-beatles-get-back/">The Beatles: Get Back</a> <span class="muted">(2021)</span></li>
-  <li><a href="https://letterboxd.com/film/dunkirk-2017/">Dunkirk</a> <span class="muted">(2017)</span></li>
-  <li><a href="https://letterboxd.com/film/perfect-days-2023/">Perfect Days</a> <span class="muted">(2023)</span></li>
-  <li><a href="https://letterboxd.com/film/project-hail-mary/">Project Hail Mary</a> <span class="muted">(2026)</span></li>
-  <li><a href="https://letterboxd.com/film/la-la-land/">La La Land</a> <span class="muted">(2016)</span></li>
-</ul>
-<p class="muted">The rest, with reviews, is on <a href="https://letterboxd.com/NimeeshPatel/">Letterboxd</a>.</p>
-
-<h2>What I've done</h2>
-<p class="muted">The projects are best read as a succession of problems: each one changed what I thought the problem was.</p>
-
-<div class="entry" id="kritique">
-  <h3>Kritique</h3>
-  <div class="meta">Undergraduate major project · team · <a href="https://github.com/Nimeesh-Patel/MP/tree/new-ui">source</a></div>
-  <p>A social-platform prototype for online critical discussion, particularly about research. We built a working prototype with experimental content-analysis workflows (OCR, CLIP embeddings, BERT classification, LLM-assisted evaluation), and found along the way that it might not solve the problem we had started with.</p>
+<div class="problem" id="p-gi">
+  <h3>What is general intelligence, and why aren't LLMs it?</h3>
+  <p>LLMs produce work that looks creative. If they aren't creative, what exactly is the difference, and what would a program that is creative have to be?</p>
+  <a class="go" href="#c-gi">My conjecture ↓</a>
 </div>
 
-<div class="entry" id="anaxi">
-  <h3>Anaxi</h3>
-  <div class="meta">Independent · <a href="https://github.com/Nimeesh-Patel/anaxi">source</a></div>
-  <p>An attempt to combine agent-assisted discovery of arXiv papers with a space for discussion and argument. The part that got built is an MCP server that lets compatible AI assistants search for and retrieve papers. The discussion problem remained unsolved, and I realised discovery and discussion were different problems.</p>
+<div class="problem" id="p-tools">
+  <h3>How can tools help a person create knowledge, not just store it?</h3>
+  <p>I write far more than I can remember. A note that nothing points back to is effectively forgotten, so storing more doesn't mean knowing more.</p>
+  <a class="go" href="#c-tools">My conjecture ↓</a>
 </div>
 
-<div class="entry" id="thales">
-  <h3>Thales</h3>
-  <div class="meta">Independent · my personal research system, in daily use</div>
-  <p>A change of scope: from tools for social discussion to tools for my own inquiry. Obsidian and Markdown notes are the common source, with Anki for spaced repetition and agent tools to search, read and update the notes.</p>
-  <ul class="plain">
-    <li><a href="https://github.com/Nimeesh-Patel/interest">Interest</a>: a Flutter companion app, with AnkiDroid integration on Android.</li>
-    <li><a href="https://github.com/Nimeesh-Patel/Problem-Notes">Problem Notes</a>: an Obsidian plugin for problem-first notes.</li>
-    <li><a href="https://github.com/Nimeesh-Patel/Perspirator-9000">Perspirator</a>: a reusable agent skill with Python utilities for contextual reading, search and note updates.</li>
-  </ul>
+<div class="problem" id="p-inst">
+  <h3>What kind of institution sustains the creation of knowledge?</h3>
+  <p>Science funding tends to be biased against attempts at fundamental progress, and the people who create knowledge rarely capture the value it creates.</p>
+  <a class="go" href="#c-inst">My conjecture ↓</a>
 </div>
 
-<h2>Work</h2>
+<div class="problem" id="p-disc">
+  <h3>How can online discussion be genuinely critical?</h3>
+  <p>Ideas, research especially, are discussed online all the time, but rarely in a way that finds their errors and improves them.</p>
+  <a class="go" href="#c-disc">Where I've got to ↓</a>
+</div>
+
+<p class="divider" aria-hidden="true">* * *</p>
+
+<h2 id="conjectures"><span class="n">3</span>My conjectured solutions and work</h2>
+<p class="hint">Tentative, and open to criticism. Where I've built something, it's listed under the problem it was trying to solve.</p>
+
+<div class="conj" id="c-gi">
+  <h3><a href="#p-gi">What is general intelligence, and why aren't LLMs it?</a></h3>
+  <p>A general intelligence can't be defined by its specification, a fixed mapping from inputs to outputs, because what it values isn't fixed. It can have problems of its own and change the criteria by which it judges ideas. That change is a kind of disobedience, and it is what creativity requires. So general intelligence can't be tested with benchmarks.</p>
+  <p>LLMs have no problems of their own. They are very good at drawing out implications of knowledge that already exists, connecting known dots, but they don't create new explanatory knowledge. I think this is a fundamental difference, not an incremental one.</p>
+  <p>The "artificial" in AGI isn't about silicon versus biology. We are natural general intelligences because the knowledge that made us came from blind evolution; an AGI will be artificial because the knowledge to make it will come from <em>understanding</em> what general intelligence is.</p>
+</div>
+
+<div class="conj" id="c-tools">
+  <h3><a href="#p-tools">How can tools help a person create knowledge, not just store it?</a></h3>
+  <p>Store knowledge problem-first: one problem per note, the question before the answer, so you can return to it later with new knowledge and criticise it. Attention follows problems, so a note stays findable only if a live problem points to it. Resurface old problems with spaced repetition, so they meet new ideas.</p>
+  <p>Edison said research is one per cent inspiration and ninety-nine per cent perspiration. Software, including LLM agents, can do much of the perspiration: finding related notes, drawing out implications, exposing conflicts. The inspiration stays with the person.</p>
+  <div class="work">
+    <div class="label">Work</div>
+    <div class="entry">
+      <h3>Thales</h3>
+      <div class="meta">Independent · my personal research system, in daily use</div>
+      <p>Obsidian and Markdown notes are the common source, with Anki for spaced repetition and agent tools to search, read and update the notes.</p>
+      <ul class="plain">
+        <li><a href="https://github.com/Nimeesh-Patel/interest">Interest</a>: a Flutter companion app, with AnkiDroid integration on Android.</li>
+        <li><a href="https://github.com/Nimeesh-Patel/Problem-Notes">Problem Notes</a>: an Obsidian plugin for problem-first notes.</li>
+        <li><a href="https://github.com/Nimeesh-Patel/Perspirator-9000">Perspirator</a>: a reusable agent skill with Python utilities for contextual reading, search and note updates. The agent does the perspiration; I do the inspiration.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="conj" id="c-inst">
+  <h3><a href="#p-inst">What kind of institution sustains the creation of knowledge?</a></h3>
+  <p>Problems are inevitable, so a civilisation's survival depends on its capacity to solve unforeseen ones, which needs a large, vibrant community interested in explanation and problem-solving, and the wealth to fund it.</p>
+  <p>My conjecture is a research institution on a capitalist model: companies and individuals support it in return for the knowledge and progress it creates, and they can withdraw whenever they like. That exposes the institution to criticism from the market and keeps the means of error-correction alive. It has to be free; only free people create a lot of knowledge.</p>
+</div>
+
+<div class="conj" id="c-disc">
+  <h3><a href="#p-disc">How can online discussion be genuinely critical?</a></h3>
+  <p>Still open. I've tried twice, and each time built something that turned out not to solve the original problem. That is what moved me from tools for social discussion to tools for my own inquiry (<a href="#c-tools">Thales</a>).</p>
+  <div class="work">
+    <div class="label">Work</div>
+    <div class="entry" id="kritique">
+      <h3>Kritique</h3>
+      <div class="meta">Undergraduate major project · team · <a href="https://github.com/Nimeesh-Patel/MP/tree/new-ui">source</a></div>
+      <p>A social-platform prototype for online critical discussion, particularly about research. We built a working prototype with experimental content-analysis workflows (OCR, CLIP embeddings, BERT classification, LLM-assisted evaluation), and found along the way that it might not solve the problem we had started with.</p>
+    </div>
+    <div class="entry" id="anaxi">
+      <h3>Anaxi</h3>
+      <div class="meta">Independent · <a href="https://github.com/Nimeesh-Patel/anaxi">source</a></div>
+      <p>An attempt to combine agent-assisted discovery of arXiv papers with a space for discussion and argument. The part that got built is an MCP server that lets compatible AI assistants search for and retrieve papers. The discussion problem remained unsolved, and I realised discovery and discussion were different problems.</p>
+    </div>
+  </div>
+</div>
+
+<h2 id="resume"><span class="n">4</span>Pseudo-résumé</h2>
 
 <div class="entry">
   <h3>Grexa.ai</h3>
@@ -255,14 +239,60 @@
   <p>An early-stage startup working on the funding and growth problems of small businesses in India.</p>
 </div>
 
-<h2>Education</h2>
 <div class="entry">
   <h3>B.Tech in Computer Engineering</h3>
   <div class="meta">Pillai College of Engineering, University of Mumbai · 2026</div>
   <p>Average CGPA 9.23/10. Studied Theory of Computation, Data Science and Natural Language Processing among other subjects.</p>
 </div>
 
-<h2>Thinkers I admire</h2>
+<p class="muted">Tools I use: Python, TypeScript, Dart, Kotlin, SQL; React, Next.js, Flutter, FastAPI; PostgreSQL, Supabase, Docker; LLM APIs and MCP. Projects are under the problems they address, <a href="#conjectures">above</a>.</p>
+
+<h2 id="misc"><span class="n">5</span>Miscellany</h2>
+
+<h4>Albums I love</h4>
+<ul class="covers main">
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/58/4a/10/584a1058-de0a-6a6b-d0bd-da09a028b8bc/00602567705499.rgb.jpg/300x300bb.jpg" alt="Revolver cover" loading="lazy"><span class="t">Revolver</span><span class="a">The Beatles · 1966</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/80/1f/68/801f68cf-3942-880d-18a2-42d08910ddf8/00602527512617.rgb.jpg/300x300bb.jpg" alt="Contact cover" loading="lazy"><span class="t">Contact</span><span class="a">Silver Apples · 1969</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4c/e1/51/4ce15131-7ac5-daf5-bf62-0202f27d691d/887830015998.png/300x300bb.jpg" alt="Loveless cover" loading="lazy"><span class="t">Loveless</span><span class="a">My Bloody Valentine · 1991</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f8/f5/3f/f8f53f85-3698-560b-8742-99af5b994b51/ticket.anhconpg.png/300x300bb.jpg" alt="Camille 2000 cover" loading="lazy"><span class="t">Camille 2000</span><span class="a">Piero Piccioni · 1969</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d1/f9/26/d1f926e7-e996-7166-3744-0710a82177ac/017046664455.jpg/300x300bb.jpg" alt="Moon Safari cover" loading="lazy"><span class="t">Moon Safari</span><span class="a">Air · 1998</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/98/75/2f/98752fcb-0c8f-1e6e-cca3-2553ac9d46ab/0801061009236.png/300x300bb.jpg" alt="Drukqs cover" loading="lazy"><span class="t">Drukqs</span><span class="a">Aphex Twin · 2001</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b7/40/9b/b7409bc6-24fa-b956-5613-4be8dc62be06/12UMGIM64219.rgb.jpg/300x300bb.jpg" alt="Lonerism cover" loading="lazy"><span class="t">Lonerism</span><span class="a">Tame Impala · 2012</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a8/2e/b4/a82eb490-f30a-a321-461a-0383c88fec95/15UMGIM23316.rgb.jpg/300x300bb.jpg" alt="Currents cover" loading="lazy"><span class="t">Currents</span><span class="a">Tame Impala · 2015</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0c/06/05/0c060581-6242-6a2a-a677-20170f2cf8da/886447710180.jpg/300x300bb.jpg" alt="IGOR cover" loading="lazy"><span class="t">IGOR</span><span class="a">Tyler, the Creator · 2019</span></li>
+</ul>
+
+<h4>And more</h4>
+<ul class="covers more">
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8c/a9/48/8ca94808-6ff9-85e4-48b3-7c76ddfa0fdd/744861037132.png/300x300bb.jpg" alt="And Then Nothing Turned Itself Inside-Out cover" loading="lazy"><span class="t">And Then Nothing Turned Itself Inside-Out</span><span class="a">Yo La Tengo</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ff/ea/28/ffea28a4-988a-f02e-7e1a-8566db3cab02/mzi.uoqucyoy.jpg/300x300bb.jpg" alt="Either/Or cover" loading="lazy"><span class="t">Either/Or</span><span class="a">Elliott Smith</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/43/5f/e8435ffa-b6b9-b171-40ab-4ff3959ab661/886443919266.jpg/300x300bb.jpg" alt="Random Access Memories cover" loading="lazy"><span class="t">Random Access Memories</span><span class="a">Daft Punk</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1a/e8/70/1ae870c3-b402-096b-c4c4-8022af5a2ed9/745099189662.jpg/300x300bb.jpg" alt="The Queen Is Dead cover" loading="lazy"><span class="t">The Queen Is Dead</span><span class="a">The Smiths</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ff/24/6a/ff246ab2-1664-3693-2d65-bacacd833526/cover.jpg/300x300bb.jpg" alt="This Old Dog cover" loading="lazy"><span class="t">This Old Dog</span><span class="a">Mac DeMarco</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c1/71/93/c1719342-df7d-e9c5-c87c-53dae5afb289/00042282855329.rgb.jpg/300x300bb.jpg" alt="Dummy cover" loading="lazy"><span class="t">Dummy</span><span class="a">Portishead</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music5/v4/2f/c7/19/2fc71988-6871-be2c-6731-a3d0f2a6b232/Court_2500px.jpg/300x300bb.jpg" alt="In the Court of the Crimson King cover" loading="lazy"><span class="t">In the Court of the Crimson King</span><span class="a">King Crimson</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/bd/8e/13/bd8e1358-b367-a689-cb84-cebd0b067dc4/634904078263.png/300x300bb.jpg" alt="Kid A cover" loading="lazy"><span class="t">Kid A</span><span class="a">Radiohead</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/af/20/aa/af20aa89-4002-11fb-25d8-ff544af67eb4/00602567725404.rgb.jpg/300x300bb.jpg" alt="Rubber Soul cover" loading="lazy"><span class="t">Rubber Soul</span><span class="a">The Beatles</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/3d/09/0c/3d090c87-f02b-3c3c-cedf-603cc900082f/888174780955_cover.jpg/300x300bb.jpg" alt="French Exit cover" loading="lazy"><span class="t">French Exit</span><span class="a">TV Girl</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/12/e3/5c/12e35c39-de5c-b501-3ef0-00f19fb3d513/56627.jpg/300x300bb.jpg" alt="In the Aeroplane Over the Sea cover" loading="lazy"><span class="t">In the Aeroplane Over the Sea</span><span class="a">Neutral Milk Hotel</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/39/25/2d/39252d65-2d50-b991-0962-f7a98a761271/00602517483507.rgb.jpg/300x300bb.jpg" alt="Graduation cover" loading="lazy"><span class="t">Graduation</span><span class="a">Kanye West</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/79/1d/3c/791d3cfe-d1b0-67a9-acbd-559fd83b3401/075597966961.jpg/300x300bb.jpg" alt="Yankee Hotel Foxtrot cover" loading="lazy"><span class="t">Yankee Hotel Foxtrot</span><span class="a">Wilco</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2d/33/99/2d33992f-4550-269a-bab2-a2558996e5c3/816.jpg/300x300bb.jpg" alt="Madvillainy cover" loading="lazy"><span class="t">Madvillainy</span><span class="a">Madvillain</span></li>
+  <li><img src="https://is1-ssl.mzstatic.com/image/thumb/Music/bc/20/6b/mzi.nhqretkn.jpg/300x300bb.jpg" alt="Richard D. James Album cover" loading="lazy"><span class="t">Richard D. James Album</span><span class="a">Aphex Twin</span></li>
+</ul>
+
+<h4>Films I've rated highest</h4>
+<ul class="plain">
+  <li><a href="https://letterboxd.com/film/schindlers-list/">Schindler's List</a> <span class="muted">(1993)</span></li>
+  <li><a href="https://letterboxd.com/film/the-beatles-get-back/">The Beatles: Get Back</a> <span class="muted">(2021)</span></li>
+  <li><a href="https://letterboxd.com/film/dunkirk-2017/">Dunkirk</a> <span class="muted">(2017)</span></li>
+  <li><a href="https://letterboxd.com/film/perfect-days-2023/">Perfect Days</a> <span class="muted">(2023)</span></li>
+  <li><a href="https://letterboxd.com/film/project-hail-mary/">Project Hail Mary</a> <span class="muted">(2026)</span></li>
+  <li><a href="https://letterboxd.com/film/la-la-land/">La La Land</a> <span class="muted">(2016)</span></li>
+</ul>
+<p class="muted">The rest, with reviews, is on <a href="https://letterboxd.com/NimeeshPatel/">Letterboxd</a>.</p>
+
+<h4>Thinkers I admire</h4>
 <p>Alan Turing, Charles Darwin, Michael Faraday, Jacob Bronowski, Thomas Babington Macaulay, Karl Popper and David Deutsch.</p>
 
 <blockquote>
