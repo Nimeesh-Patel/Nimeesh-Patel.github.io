@@ -109,6 +109,11 @@
   .card .threads li { margin-bottom: 0.4rem; }
   .card .related { margin: 0.75rem 0 0; color: var(--muted); }
 
+  /* asides inside About: the present situation and the invitation */
+  .aside { border-left: 2px solid var(--accent); padding-left: 1rem; margin: 0 0 1rem; }
+  .aside h4 { margin: 0 0 0.25rem; }
+  .aside p { margin: 0; }
+
   /* 3, 4 · entries */
   .entry { margin: 0 0 1.75rem; }
   .entry .meta { margin: 0.1rem 0 0.4rem; }
@@ -152,15 +157,23 @@
 
 <h2 id="about"><span class="n">1</span>About</h2>
 <p>I’m Nimeesh Patel. I’m trying to build a life around private research, with as much freedom as possible to choose my problems, follow my interests, and revise my ideas. The practical question is how to sustain that freedom through work, sponsorship, or another form of support. I want work that is interesting in its own right: engaging problems, people, and companies, within a culture where ideas can be criticised and improved.</p>
+<div class="aside" id="now">
+  <h4>Now</h4>
+  <p>I'm a Product Management Intern at Grexa.ai, a product startup, where I look after the Google Business Profile pod. Before that I worked as a software engineer, freelance and at a three-person early-stage startup. Likely next, though not yet certain: an MSc in Advanced Computer Science at the University of Birmingham from January 2027, after which I'll be looking for work in the UK.</p>
+</div>
 <p>My main research questions concern morality, disobedience, creativity, and artificial general intelligence (AGI). I’m developing the conjecture that morality shapes what we regard as a problem: which conflicts between ideas call for an explanation, and what we choose to do about them. By “disobedience,” I mean the capacity to question and depart from existing ideas, including our own standards of judgment. I’m trying to understand how this capacity relates to creativity and the creation of explanatory knowledge, and what that implies for AGI.</p>
 <p>That inquiry extends to culture. I’m interested in the Enlightenment, dynamic societies, and rational memes—ideas and traditions that remain open to criticism and improvement. What makes an environment hospitable to creativity? What enables people to question inherited ideas and improve their surroundings? These questions connect my philosophical interests with the kinds of people, companies, and environments I’m drawn to.</p>
 <p>I draw inspiration from David Deutsch, Karl Popper, Thomas Babington Macaulay, Jacob Bronowski, Richard Feynman, and Winston Churchill. British culture and the wider Anglosphere are also important interests, especially in connection with my questions about Enlightenment culture, freedom, and progress.</p>
 <p>Alongside this, I’m developing tools for working with my thoughts and research notes: capturing ideas with little friction, recovering relevant context, and bringing problems back into attention. My attention moves between pursuing philosophical questions, reading, developing arguments, and building tools that support this work.</p>
 <p>Part of this is personal: I’m examining assumptions and habits I had left unquestioned, and trying to make both my thinking and my surroundings more open to criticism and change. I see this as an ongoing, incremental process whose pace I want to accelerate as I understand and correct more.</p>
 <p>I treat my own theories as conjectures to criticise and improve. My working view is that current LLMs cannot create new explanatory knowledge; I use them for “perspiration”: drawing out implications, making assumptions explicit, and exposing conflicts for me to think through.</p>
+<div class="aside" id="contact">
+  <h4>Get in touch</h4>
+  <p>I'd welcome work that's interesting in its own right (my experience is in product management and software engineering), conversations about any of the problems below, and sponsorship or other support for private research. Email me at <a href="mailto:nimeeshpatel04@gmail.com">nimeeshpatel04@gmail.com</a>, or find me on <a href="https://x.com/NimeeshPatel">X</a>.</p>
+</div>
 
 <h2 id="problems"><span class="n">2</span>Problems I'm working on</h2>
-<p class="hint">Each card states a problem. Tap it to turn it over: my current conjecture is on the back, with the threads it leaves open.</p>
+<p class="hint">Each card states a problem. Tap a card to open it: my current conjecture is inside, with the threads it leaves open.</p>
 
 <details class="card" id="p1">
   <summary><span class="num">2.1</span><span class="q">Programs keep getting better at what looks like thinking. What makes a general intelligence different in kind, not just degree?</span></summary>
@@ -377,9 +390,19 @@
 </blockquote>
 
 <footer>
-  <p>For what I'm thinking now, see <a href="https://x.com/NimeeshPatel">X</a>; for code, <a href="https://github.com/Nimeesh-Patel">GitHub</a>. Last updated October 2026.</p>
+  <p>For what I'm thinking now, see <a href="https://x.com/NimeeshPatel">X</a>; for code, <a href="https://github.com/Nimeesh-Patel">GitHub</a>. Last updated <span id="updated">November 2026</span>.</p>
 </footer>
 
 </main>
+<script>
+  // "Last updated" follows the latest commit to this page; the static month stays if GitHub can't be reached.
+  fetch("https://api.github.com/repos/Nimeesh-Patel/Nimeesh-Patel.github.io/commits?path=index.html&per_page=1")
+    .then(r => r.ok ? r.json() : [])
+    .then(c => {
+      const d = c[0] && new Date(c[0].commit.committer.date);
+      if (d) document.getElementById("updated").textContent = d.toLocaleDateString("en-GB", { month: "long", year: "numeric" });
+    })
+    .catch(() => {});
+</script>
 </body>
 </html>
